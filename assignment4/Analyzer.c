@@ -1,5 +1,7 @@
 #include "Analyzer.h"
 
+//  gcc Analyzer.c Tokenizer.c Givens.c Parser.c -std=c99 -o files
+
 int main(){
 	//initialize file pointer to NULL 
 	FILE *infile = NULL; 

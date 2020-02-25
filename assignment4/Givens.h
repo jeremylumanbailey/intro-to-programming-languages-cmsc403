@@ -2,6 +2,7 @@
 #define GIVENS_H
 
 #include <regex.h>
+#include <string.h>
 
 #define FALSE 0
 #define TRUE !FALSE
@@ -28,9 +29,6 @@ struct lexics{
 	int token;
 	char lexeme[LEXEME_MAX];
 };
-/*Spring 2019 Legecy pls remove 
-_Bool vaildNumber(char* aLexeme);
-*/
 
 _Bool validNumber(char* aLexeme);
 _Bool validIdentifier(char * aLexeme);
