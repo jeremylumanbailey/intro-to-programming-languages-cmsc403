@@ -19,7 +19,7 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
         //Parse current line one char at a time putting each char in fullline array
         for(i=0; i<LEXEME_MAX; i++) {
             if( currentLine[i] == '\n' || currentLine[i] == '\0'){
-                //end of line detected? Add terminator to full line
+                //End of line or file detected? Add terminator to 'fullline'
                 fullline[i] = '\0';
                 break;
             }
@@ -27,14 +27,10 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
             count++;
         }
 
-//        printf("%s", fullline);
-
+        //Iterate through fullline for lexemes
         for(i=0; i<count; i++){
 
-            // if(isspace(fullline[i])) {
-            //     continue;
-            // }
-            
+            //Check if it is end of word or number, add as lexeme if it is         
             if( !isalnum(fullline[i]) && c > 0 && isalnum(tmparr[c-1]) ){
                 tmparr[c] = '\0';
                 strcpy(aLex[countlex].lexeme, tmparr);
@@ -46,9 +42,10 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
 
             }
 
-            
+            //Check if character is a special character
             if ( !isalnum(fullline[i]) && !isspace(fullline[i]) ) {
-
+                
+                //Check for binop != or == using lookahead
                 if( (fullline[i] == '!' || fullline[i] == '=' ) && fullline[i+1] == '=' )
 
                 {
@@ -61,7 +58,8 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
                     i++;
                     continue;
                 }
-
+                
+                // Add special character as lexeme
                 else {
                     tmparr[c] = fullline[i];
                     tmparr[c+1] = '\0';
@@ -73,26 +71,24 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
 
             }
 
-
-
-
+            //Begin adding word or number as a lexeme
             if (isalnum(fullline[i])) {
                 tmparr[c] = fullline[i];
                 c++;
                 continue;
             }
 
-
-
-
-
         }
+
+    //Clear out garbage (some might not be nessisary but just in case)
     memset(fullline, '\0', sizeof(LEXEME_MAX));
     memset(currentLine, '\0', sizeof(LEXEME_MAX));
     memset(tmparr, '\0', sizeof(LEXEME_MAX));
     count = 0;
     c = 0;
     }
+
+    //Set the value of numLex to how many lexemes were counted
     *numLex = countlex;
     return TRUE;
 }
