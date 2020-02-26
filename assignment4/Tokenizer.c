@@ -10,9 +10,6 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
     char currentLine[LEXEME_MAX];
     char fullline[LEXEME_MAX];
     char tmparr[LEXEME_MAX];
-
-    char leftPar[1] = "(";
-    char rightPar[1] = ")";
  
     int i, count, countlex, c;
 
@@ -21,7 +18,7 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
 
         //Parse current line one char at a time putting each char in fullline array
         for(i=0; i<LEXEME_MAX; i++) {
-            if( currentLine[i] == '\n'){
+            if( currentLine[i] == '\n' || currentLine[i] == '\0'){
                 //end of line detected? Add terminator to full line
                 fullline[i] = '\0';
                 break;
@@ -52,12 +49,6 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
             
             if ( !isalnum(fullline[i]) && !isspace(fullline[i]) ) {
 
-                // char fulllinei = fullline[i];
-                // char fullline2 = fullline[i+1];
-
-                // if( (strcmp( fulllinei, "!" ) == 0 || strcmp( fulllinei, "=" ) == 0) 
-                // && strcmp( fullline2, "=" ) == 0 )
-
                 if( (fullline[i] == '!' || fullline[i] == '=' ) && fullline[i+1] == '=' )
 
                 {
@@ -84,6 +75,7 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
 
 
 
+
             if (isalnum(fullline[i])) {
                 tmparr[c] = fullline[i];
                 c++;
@@ -95,7 +87,9 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
 
 
         }
-    memset(fullline, '\0', sizeof(count));
+    memset(fullline, '\0', sizeof(LEXEME_MAX));
+    memset(currentLine, '\0', sizeof(LEXEME_MAX));
+    memset(tmparr, '\0', sizeof(LEXEME_MAX));
     count = 0;
     c = 0;
     }
