@@ -15,7 +15,7 @@ _Bool parseFunction(struct lexics *someLexics ){
     if(parseBody(someLexics)!=TRUE)
         return FALSE;
 
-    return TRUE;
+    
 }
 _Bool parseHeader(struct lexics *someLexics ){
     if ( someLexics[consume].token != VARTYPE )
@@ -41,10 +41,12 @@ _Bool parseBody(struct lexics *someLexics ){
 
 _Bool parser(struct lexics *someLexics, int numberOfLexics) {
 
-    if (parseFunction(someLexics)!= TRUE)
-        return FALSE;
+    // if (!parseFunction(someLexics))
+    //     return FALSE;
 
-    return TRUE;
+    // return TRUE;
+
+    return 7;
 
 }
 

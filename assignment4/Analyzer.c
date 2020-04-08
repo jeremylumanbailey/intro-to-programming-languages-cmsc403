@@ -28,6 +28,13 @@ int main(){
 	for(int i = 0; i < numberOfLexics; i++){
 		printf("%s  ",allLexics[i].lexeme);
 	}
+///////
+	printf("\n ");
+	for(int i = 0; i < numberOfLexics; i++){
+		printf("%d  ",allLexics[i].token);
+	}
+
+/////
 	printf("\n");
 	printf("Did parse: %d\n",parser(allLexics, numberOfLexics));
 

@@ -30,6 +30,7 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
         //Iterate through fullline for lexemes
         for(i=0; i<count; i++){
 
+
             //Check if it is end of word or number, add as lexeme if it is         
             if( !isalnum(fullline[i]) && c > 0 && isalnum(tmparr[c-1]) ){
                 tmparr[c] = '\0';
@@ -175,7 +176,7 @@ _Bool tokenizer(struct lexics *aLex, int *numLex, FILE *inf) {
         }
 
         if ( strcmp(aLex[i].lexeme, vartypeint) == 0 ||
-             strcmp(aLex[i].lexeme, vartypevoid)
+             strcmp(aLex[i].lexeme, vartypevoid) == 0
         ){
         aLex[i].token = VARTYPE;
         continue;

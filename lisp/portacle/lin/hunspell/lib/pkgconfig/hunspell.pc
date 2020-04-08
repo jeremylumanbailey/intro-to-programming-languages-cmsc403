@@ -1,0 +1,10 @@
+prefix=/home/linus/portacle/lin/hunspell
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: hunspell
+Description: Hunspell spellchecking library
+Version: 1.6.1
+Libs: -L${libdir} -lhunspell-1.6
+Cflags: -I${includedir}/hunspell
